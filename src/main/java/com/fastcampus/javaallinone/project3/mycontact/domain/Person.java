@@ -1,8 +1,6 @@
 package com.fastcampus.javaallinone.project3.mycontact.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +12,9 @@ import java.time.LocalDate;
 @Setter
 //@ToString(exclude = "phoneNumber") // 스트링으로 exclude 시키는 것은 개발자가 실수할 여지가 있음
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor // 필수로 있어야 하는 것들만 받아서 만들어주는 생성자
 public class Person {
     @Id
     @GeneratedValue
@@ -21,10 +22,12 @@ public class Person {
 
 //    @Getter
 //    @Setter
+    @NonNull
     private String name;
 
 //    @Getter
 //    @Setter
+    @NonNull
     private int age;
 
 //    @Getter
@@ -50,7 +53,28 @@ public class Person {
     @ToString.Exclude // 이렇게 빼주는게 더 실수할 여지 적음.
     private String phoneNumber;
 
-//    public String getHobby() {
+
+//    public Person(String name, int age) {
+//        this.name = name;
+//        this.age = age;
+//    }
+//
+//    public Person() {}
+//
+//    public Person(Long id, String name, int age, String hobby, String bloodType, String address, LocalDate birthday, String job, String phoneNumber) {
+//        this.id = id;
+//        this.name = name;
+//        this.age = age;
+//        this.hobby = hobby;
+//        this.bloodType = bloodType;
+//        this.address = address;
+//        this.birthday = birthday;
+//        this.job = job;
+//        this.phoneNumber = phoneNumber;
+//    }
+    // 생성자들도 일일이 생성하려면 힘듦...
+
+    //    public String getHobby() {
 //        return hobby;
 //    }
 //
@@ -137,5 +161,21 @@ public class Person {
 //                '}';
 //    } 필드가 추가될 때마다 새로 만들어줘야 함... 귀찮...
 
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
 
+        Person person = (Person) obj;
+
+        if(person.getAge() != this.getAge()) {
+            return false;
+        }
+
+        if(!person.getName().equals(this.getName())) {
+            return false;
+        }
+
+        return true;
+    }
 }
