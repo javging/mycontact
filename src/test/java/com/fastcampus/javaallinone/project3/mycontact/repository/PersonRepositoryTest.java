@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
@@ -52,5 +54,13 @@ class PersonRepositoryTest {
         System.out.println(person1.equals(person2));
         System.out.println(person1.hashCode());
         System.out.println(person2.hashCode());
+        // 해시코드는 다름
+        // 해시코드가 다르면 어떤 문제??
+
+        Map<Person, Integer> map = new HashMap<>();
+        map.put(person1, person1.getAge());
+
+        System.out.println(map);
+        System.out.println(map.get(person2));
     }
 }
