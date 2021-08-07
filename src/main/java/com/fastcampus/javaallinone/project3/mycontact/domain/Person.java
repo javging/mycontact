@@ -8,13 +8,19 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
-//@ToString(exclude = "phoneNumber") // 스트링으로 exclude 시키는 것은 개발자가 실수할 여지가 있음
-@ToString
+
 @NoArgsConstructor
 @AllArgsConstructor
+
+@Data // 이거 하나로 아래 전부 만들어줌,,, RequiredArgsConstructor 는 안만들어주는데??
+// 강력하고 편리한 대신,, 사이드이펙트 있다고 함,,,
+//@Getter
+//@Setter
+////@ToString(exclude = "phoneNumber") // 스트링으로 exclude 시키는 것은 개발자가 실수할 여지가 있음
+//@ToString
 @RequiredArgsConstructor // 필수로 있어야 하는 것들만 받아서 만들어주는 생성자
+//@EqualsAndHashCode
+
 public class Person {
     @Id
     @GeneratedValue
@@ -36,6 +42,7 @@ public class Person {
 
 //    @Getter
 //    @Setter
+    @NonNull
     private String bloodType;
 
 //    @Getter
@@ -161,25 +168,26 @@ public class Person {
 //                '}';
 //    } 필드가 추가될 때마다 새로 만들어줘야 함... 귀찮...
 
-    public boolean equals(Object obj) {
-        if(obj == null) {
-            return false;
-        }
+//    public boolean equals(Object obj) {
+//        if(obj == null) {
+//            return false;
+//        }
+//
+//        Person person = (Person) obj;
+//
+//        if(person.getAge() != this.getAge()) {
+//            return false;
+//        }
+//
+//        if(!person.getName().equals(this.getName())) {
+//            return false;
+//        }
+//
+//        return true;
+//    }
+//
+//    public int hashCode() {
+//        return (name+age).hashCode();
+//    }
 
-        Person person = (Person) obj;
-
-        if(person.getAge() != this.getAge()) {
-            return false;
-        }
-
-        if(!person.getName().equals(this.getName())) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public int hashCode() {
-        return (name+age).hashCode();
-    }
 }

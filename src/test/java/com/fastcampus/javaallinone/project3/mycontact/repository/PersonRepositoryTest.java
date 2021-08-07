@@ -39,7 +39,7 @@ class PersonRepositoryTest {
     @Test
     void constructorTest() {
         Person person = new Person(1L, "martin", 10, "reading", "A", "분당", LocalDate.of(2021,8,7), "programmer", "010-7141-3096");
-        Person person2 = new Person("martin", 1);
+        Person person2 = new Person("martin", 1, "B");
         System.out.println(person);
         person2.setAge(999999999);
         System.out.println(person2);
@@ -48,8 +48,8 @@ class PersonRepositoryTest {
 
     @Test
     void hashcodeAndEquals() {
-        Person person1 = new Person("martin", 10);
-        Person person2 = new Person("martin", 10);
+        Person person1 = new Person("martin", 10, "A");
+        Person person2 = new Person("martin", 10, "A");
 
         System.out.println(person1.equals(person2));
         System.out.println(person1.hashCode());
