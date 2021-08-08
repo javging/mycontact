@@ -20,6 +20,21 @@ class PersonRepositoryTest {
     private PersonRepository personRepository;
 
     @Test
+    void invalidBirthday() {
+        Birthday birthday = new Birthday();
+        birthday.setYearOfBirthday(2011);
+        birthday.setMonthOfBirthday(2);
+        birthday.setDayOfBirthday(31);
+
+        Person person = new Person("test", 10, "O");
+        person.setBirthday(birthday);
+
+        personRepository.save(person);
+
+        personRepository.findByMonthOfBirthday(2).forEach(System.out::println);
+    }
+
+    @Test
     void crud() {
         Person person = new Person();
         person.setName("martin");

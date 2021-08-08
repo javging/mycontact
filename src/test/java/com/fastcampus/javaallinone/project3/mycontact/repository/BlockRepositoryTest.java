@@ -34,4 +34,5 @@ class BlockRepositoryTest {
         assertThat(blocks.get(0).getName()).isEqualTo("martin");
 
     }
+
 }

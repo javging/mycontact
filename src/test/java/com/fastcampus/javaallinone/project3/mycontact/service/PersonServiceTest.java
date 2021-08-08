@@ -38,12 +38,13 @@ class PersonServiceTest {
     }
 
     @Test
+    @Transactional
     void cascadeTest() {
         givenPeople();
         List<Person> people = personRepository.findAll();
         people.forEach(System.out::println);
 
-        Person person = people.get(3);
+        Person person = people.get(4);
         person.getBlock().setStartDate(LocalDate.now());
         person.getBlock().setEndDate(LocalDate.now());
         System.out.println(person);
