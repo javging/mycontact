@@ -2,10 +2,7 @@ package com.fastcampus.javaallinone.project3.mycontact.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -69,7 +66,10 @@ public class Person {
 //
 //    private LocalDate blockEndDate;
 
-    @OneToOne
+//    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    // 걍 다 연결시킴,, + 부모 사라지면 자식속성엔터티도 삭제,, + block이 필요한 시점에 block을 select 해서 가져옴
+    @ToString.Exclude // 로그찍으면서 toString 메서드에 필요하기 때문에 데이터 가져오게 되는데, toString에 포함시키지 않으면 안가져옴~
     private Block block;
 
 //    public Person(String name, int age) {
