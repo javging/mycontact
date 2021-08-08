@@ -1,8 +1,10 @@
 package com.fastcampus.javaallinone.project3.mycontact.domain;
 
+import com.fastcampus.javaallinone.project3.mycontact.domain.dto.Birthday;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Entity
@@ -49,7 +51,9 @@ public class Person {
 
 //    @Getter
 //    @Setter
-    private LocalDate birthday;
+    @Valid
+    @Embedded
+    private Birthday birthday;
 
 //    @Getter
 //    @Setter

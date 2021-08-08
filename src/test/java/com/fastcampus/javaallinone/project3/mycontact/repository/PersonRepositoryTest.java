@@ -1,6 +1,7 @@
 package com.fastcampus.javaallinone.project3.mycontact.repository;
 
 import com.fastcampus.javaallinone.project3.mycontact.domain.Person;
+import com.fastcampus.javaallinone.project3.mycontact.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -89,17 +90,25 @@ class PersonRepositoryTest {
         givenPerson("martin", 10, "A", LocalDate.of(1988,9,1));
         givenPerson("martin", 10, "A", LocalDate.of(1988,10,1));
         givenPerson("martin", 10, "A", LocalDate.of(1988,11,1));
-        givenPerson("martin", 10, "A", LocalDate.of(1988,8,10));
+        givenPerson("martin", 10, "A", LocalDate.of(1989,8,10));
 
-        personRepository.findByBirthdayBetween(
-                LocalDate.of(1988,8,1),
-                LocalDate.of(1988, 8,31))
-                .forEach(System.out::println);
+//        personRepository.findByBirthdayBetween(
+//                LocalDate.of(1988,8,1),
+//                LocalDate.of(1988, 8,31))
+//                .forEach(System.out::println);
+        // 년도 다를 경우 조회하기 어려움
+        personRepository.findByMonthOfBirthday(8).forEach(System.out::println);
+        personRepository.findByMonthOfBirthdayAndDayOfBirthday(8, 10).forEach(System.out::println);
+        personRepository.anyName(8, 10).forEach(System.out::println);
+        personRepository.nativeQueryTest(8, 10).forEach(System.out::println);
     }
 
     void givenPerson(String name, int age, String bloodType, LocalDate birthday) {
         Person person = new Person(name, age, bloodType);
-        person.setBirthday(birthday);
+//        person.setBirthday(birthday);
+//        person.setBirthday(new Birthday(birthday.getYear(), 13, birthday.getDayOfMonth()));
+//        person.setBirthday(new Birthday(birthday.getYear(), birthday.getMonthValue(), birthday.getDayOfMonth()));
+        person.setBirthday(new Birthday(birthday));
         personRepository.save(person);
     }
 }
