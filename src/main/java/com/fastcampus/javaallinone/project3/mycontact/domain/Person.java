@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -60,6 +61,16 @@ public class Person {
     @ToString.Exclude // 이렇게 빼주는게 더 실수할 여지 적음.
     private String phoneNumber;
 
+//    private boolean block; // 이렇게 만들어주면 isBlock 메서드 자동으로 생성된다고??
+//
+//    private String blockReason;
+//
+//    private LocalDate blockStartDate;
+//
+//    private LocalDate blockEndDate;
+
+    @OneToOne
+    private Block block;
 
 //    public Person(String name, int age) {
 //        this.name = name;

@@ -25,6 +25,7 @@ class PersonRepositoryTest {
         person.setAge(10);
         person.setBloodType("A");
 
+        System.out.println(personRepository);
         personRepository.save(person);
 
         System.out.println(personRepository.findAll());
@@ -38,11 +39,12 @@ class PersonRepositoryTest {
 
     @Test
     void constructorTest() {
-        Person person = new Person(1L, "martin", 10, "reading", "A", "분당", LocalDate.of(2021,8,7), "programmer", "010-7141-3096");
+        // Person person = new Person(1L, "martin", 10, "reading", "A", "분당", LocalDate.of(2021,8,7), "programmer", "010-7141-3096");
         Person person2 = new Person("martin", 1, "B");
-        System.out.println(person);
+        // System.out.println(person);
         person2.setAge(999999999);
         System.out.println(person2);
+        // System.out.println(person2.isBlock());
     }
 
 
