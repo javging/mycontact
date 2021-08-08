@@ -27,6 +27,7 @@ class PersonRepositoryTest {
         personRepository.save(person);
 
         personRepository.findByMonthOfBirthday(2).forEach(System.out::println);
+        personRepository.delete(person);
     }
 
     @Test
@@ -42,6 +43,8 @@ class PersonRepositoryTest {
         assertThat(result.get(0).getName()).isEqualTo("john");
         assertThat(result.get(0).getAge()).isEqualTo(10);
         assertThat(result.get(0).getBloodType()).isEqualTo("A");
+
+        personRepository.delete(person);
     }
 
 
