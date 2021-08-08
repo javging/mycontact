@@ -79,6 +79,14 @@ class PersonServiceTest {
         System.out.println(person);
     }
 
+    @Test
+    void getPeopleByName() {
+        givenPeople();
+
+        List<Person> martins = personService.getPeopleByName("martin");
+        System.out.println(martins);
+    }
+
 //    private void givenBlocks() {
 //        givenBlock("martin");
 //    }

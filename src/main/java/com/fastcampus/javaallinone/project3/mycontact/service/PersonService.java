@@ -21,12 +21,19 @@ public class PersonService {
     BlockRepository blockRepository;
 
     public List<Person> getPeopleExcludeBlocks() {
-        List<Person> people = personRepository.findAll();
-        System.out.println(people);
+//        List<Person> people = personRepository.findAll();
+//        System.out.println(people);
 //        List<Block> blocks = blockRepository.findAll();
 //        List<String> blockNames = blocks.stream().map(Block::getName).collect(Collectors.toList());
 
-        return people.stream().filter(person -> person.getBlock()==null).collect(Collectors.toList());
+//        return people.stream().filter(person -> person.getBlock()==null).collect(Collectors.toList());
+        return personRepository.findByBlockIsNull();
+    }
+
+    public List<Person> getPeopleByName(String name) {
+        List<Person> peopleWithName = personRepository.findByName(name);
+
+        return peopleWithName;
     }
 
     @Transactional(readOnly = true)

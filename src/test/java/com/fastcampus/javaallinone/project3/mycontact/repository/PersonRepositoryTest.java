@@ -65,4 +65,41 @@ class PersonRepositoryTest {
         System.out.println(map);
         System.out.println(map.get(person2));
     }
+
+    @Test
+    void findByBloodType() {
+        personRepository.save(new Person("martin", 10, "A"));
+        personRepository.save(new Person("martin", 10, "B"));
+        personRepository.save(new Person("martin", 10, "C"));
+        // 같은 혈액형 2개 이상이면 오류 발생함,,
+        personRepository.save(new Person("martin", 10, "A"));
+        personRepository.save(new Person("martin", 10, "A"));
+
+//        System.out.println(personRepository.findByBloodType("A")); // 혈액형으로 조회했을 때, 1명만 나오면 Person객체로 받아와도 괜춘
+//        personRepository.findByBloodType("A").forEach(System.out::println);
+        // 여러개일 경우 생각해서 리스트형태로 받아와야 함,,
+        System.out.println(personRepository.findByBloodType("AB")); // 객체로 받아올 때,, 하나도 없으면 null 임 ,, 리스트로 받아올때는 빈 리스트.
+//        personRepository.findByBloodType("AB").forEach(System.out::println);
+        // 없을 경우 빈 리스트,,
+    }
+
+    @Test
+    void findByBirthdayBetween() {
+        givenPerson("martin", 10, "A", LocalDate.of(1988,8,1));
+        givenPerson("martin", 10, "A", LocalDate.of(1988,9,1));
+        givenPerson("martin", 10, "A", LocalDate.of(1988,10,1));
+        givenPerson("martin", 10, "A", LocalDate.of(1988,11,1));
+        givenPerson("martin", 10, "A", LocalDate.of(1988,8,10));
+
+        personRepository.findByBirthdayBetween(
+                LocalDate.of(1988,8,1),
+                LocalDate.of(1988, 8,31))
+                .forEach(System.out::println);
+    }
+
+    void givenPerson(String name, int age, String bloodType, LocalDate birthday) {
+        Person person = new Person(name, age, bloodType);
+        person.setBirthday(birthday);
+        personRepository.save(person);
+    }
 }
