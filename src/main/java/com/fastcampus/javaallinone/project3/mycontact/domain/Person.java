@@ -71,8 +71,9 @@ public class Person {
 //    private LocalDate blockEndDate;
 
 //    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     // 걍 다 연결시킴,, + 부모 사라지면 자식속성엔터티도 삭제,, + block이 필요한 시점에 block을 select 해서 가져옴
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude // 로그찍으면서 toString 메서드에 필요하기 때문에 데이터 가져오게 되는데, toString에 포함시키지 않으면 안가져옴~
     private Block block;
 

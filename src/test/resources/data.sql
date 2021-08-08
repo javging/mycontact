@@ -1,7 +1,7 @@
 insert into person (`id`, `name`, `age`, `blood_type`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`) values (1, 'martin', 10, 'A', 1991, 8, 15);
 insert into person (`id`, `name`, `age`, `blood_type`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`) values (2, 'david', 10, 'B', 1992, 7, 10);
 insert into person (`id`, `name`, `age`, `blood_type`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`) values (3, 'dennis', 10, 'O', 1993, 10, 5);
-insert into person (`id`, `name`, `age`, `blood_type`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`) values (4, 'sophia', 10, 'A', 1994, 8, 31);
+insert into person (`id`, `name`, `age`, `blood_type`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`) values (4, 'sophia', 10, 'A', 1994, 8, 9);
 
 insert into block (`id`, `name`) values (1, 'dennis');
 insert into block (`id`, `name`) values (2, 'sophia');

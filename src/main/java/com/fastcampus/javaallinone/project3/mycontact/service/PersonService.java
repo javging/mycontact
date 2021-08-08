@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Slf4j
@@ -30,10 +32,20 @@ public class PersonService {
         return peopleWithName;
     }
 
+    @Transactional
+    public List<Person> getPeopleByBirthday(LocalDate birthday) {
+        List<Person> todayBirthdayPeople = personRepository.findByMonthOfBirthdayAndDayOfBirthday(birthday.getMonthValue(), birthday.getDayOfMonth());
+        LocalDate nextDay = birthday.plusDays(1);
+        System.out.println(nextDay);
+        List<Person> tomorrowBirthdayPeople = personRepository.findByMonthOfBirthdayAndDayOfBirthday(nextDay.getMonthValue(), nextDay.getDayOfMonth());
+
+        return Stream.concat(todayBirthdayPeople.stream(), tomorrowBirthdayPeople.stream()).collect(Collectors.toList());
+    }
+
     @Transactional(readOnly = true)
     public Person getPerson(Long id) {
 //        Person person = personRepository.findById(id).get();
-        Person person = personRepository.findById(id).orElse(null); // 원래는 아래처럼 존재여부 따져야 하는데, orElse로 축약
+        Person person = personRepository.findById(id).orElse(null); // 원래는 아래처럼 존재여부 따져야 하는데, orElse 로 축약
 
 //        Optional<Person> person = personRepository.findById(id);
 
