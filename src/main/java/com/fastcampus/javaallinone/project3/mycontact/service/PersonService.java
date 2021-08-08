@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,13 +32,14 @@ public class PersonService {
 
     @Transactional(readOnly = true)
     public Person getPerson(Long id) {
-//        System.out.println(id);
-//        System.out.println(personRepository.findAll());
-        Person person = personRepository.findById(id).get();
-//        System.out.println(personRepository.getOne(1L).getName()); // @Transactional 있어야 오류 안남,,
+//        Person person = personRepository.findById(id).get();
+        Person person = personRepository.findById(id).orElse(null); // 원래는 아래처럼 존재여부 따져야 하는데, orElse로 축약
 
+//        Optional<Person> person = personRepository.findById(id);
 
-//        System.out.println(person); // 걍 다 찍힘
+//        if (person.isPresent()) return person.get();
+//        else return null;
+
         log.info("person: {}", person); // 나중에 필요 없으면 로그 출력되지 않도록 설정할 수 있음
 
         return person;
